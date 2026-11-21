@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twin Vistas — Spot the Difference</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">Twin Vistas</span>
+    <span class="brand-sub">spot the difference</span>
+  </div>
+  <div class="topbar-right">
+    <span class="star-bank" title="Stars earned across every hunt">★ <span id="star-total">0</span></span>
+    <button id="btn-sound" class="chip-btn" type="button" title="Sound on/off (M)">Sound: on</button>
+    <button id="btn-menu-top" class="chip-btn" type="button" title="Back to the scene shelf (Esc)">Scenes</button>
+  </div>
+</header>
+
+<main>
+  <!-- ============ MENU ============ -->
+  <section id="screen-menu" class="screen">
+    <h1 class="menu-title">Six places. Ten changes each.<br>How sharp are your eyes?</h1>
+    <p class="menu-blurb">
+      Every vista is painted twice — and the second painting is lying in ten small ways.
+      Click a change in either picture to ring it. Wrong clicks cost a heart;
+      the clock is always running.
+    </p>
+    <div class="difficulty-row" role="group" aria-label="Difficulty">
+      <span class="difficulty-label">Difficulty</span>
+      <button class="pill" data-difficulty="relaxed" type="button">Relaxed · 6:00 · 5 hearts</button>
+      <button class="pill is-on" data-difficulty="classic" type="button">Classic · 4:00 · 3 hearts</button>
+      <button class="pill" data-difficulty="expert" type="button">Expert · 2:30 · 3 hearts</button>
+    </div>
+    <div id="scene-grid" class="scene-grid"></div>
+    <p class="menu-keys">Keys: <b>H</b> hint · <b>P</b> pause · <b>M</b> sound · <b>R</b> restart · <b>N</b> next scene · <b>1–6</b> jump to a scene</p>
+  </section>
+
+  <!-- ============ GAME ============ -->
+  <section id="screen-game" class="screen" hidden>
+    <div class="hud">
+      <div class="hud-left">
+        <div id="hud-scene" class="hud-scene">Sunset Harbour</div>
+        <div id="hud-place" class="hud-place">Port Solana</div>
+      </div>
+      <div class="hud-centre">
+        <div id="hud-counter" class="hud-counter">Found 0 of 10 — <b>10 to go</b></div>
+        <div class="timer-track"><div id="timer-fill" class="timer-fill"></div></div>
+      </div>
+      <div class="hud-right">
+        <span id="hud-time" class="hud-time">4:00</span>
+        <span id="hud-hearts" class="hud-hearts" title="Hearts left"></span>
+        <span id="hud-score" class="hud-score" title="Score">0</span>
+        <button id="btn-hint" class="chip-btn accent" type="button" title="Reveal a hint (H)">Hint · 3</button>
+        <button id="btn-pause" class="chip-btn" type="button" title="Pause (P)">Pause</button>
+      </div>
+    </div>
+
+    <div class="panels">
+      <figure class="panel">
+        <canvas id="canvas-left" width="600" height="450"></canvas>
+        <figcaption>Original</figcaption>
+      </figure>
+      <figure class="panel">
+        <canvas id="canvas-right" width="600" height="450"></canvas>
+        <figcaption>Spot the changes</figcaption>
+      </figure>
+    </div>
+    <div id="toast" class="toast" role="status"></div>
+
+    <!-- pause overlay -->
+    <div id="overlay-pause" class="overlay" hidden>
+      <div class="overlay-card">
+        <h2>Paused</h2>
+        <p>The clock is holding its breath.</p>
+        <button id="btn-resume" class="big-btn" type="button">Keep hunting</button>
+        <button id="btn-restart2" class="ghost-btn" type="button">Restart this scene</button>
+        <button id="btn-quit2" class="ghost-btn" type="button">Back to scenes</button>
+      </div>
+    </div>
+
+    <!-- end overlay -->
+    <div id="overlay-end" class="overlay" hidden>
+      <div class="overlay-card">
+        <div id="end-stars" class="end-stars"></div>
+        <h2 id="end-title">Every change found!</h2>
+        <p id="end-detail"></p>
+        <button id="btn-next" class="big-btn" type="button">Next scene</button>
+        <button id="btn-retry" class="ghost-btn" type="button">Play it again</button>
+        <button id="btn-quit" class="ghost-btn" type="button">Back to scenes</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  Twin Vistas — an original spot-the-difference game. Every picture is drawn in code;
+  every sound is synthesised. No network, no libraries, just canvas.
+</footer>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
